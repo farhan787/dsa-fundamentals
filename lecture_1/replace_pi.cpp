@@ -15,7 +15,7 @@ void replacePi(char arr[], int i) {
     // Rec Case
     if (arr[i] == 'p' && arr[i + 1] == 'i') {
         int j = i + 2;
-        while(j >= i + 2) {
+        while(arr[j - 2] != '\0') {
             j++;
         }
         while(j >= i + 2) {
