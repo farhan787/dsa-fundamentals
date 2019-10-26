@@ -66,6 +66,10 @@ class Heap {
     }
 
     void pop() {
+	if (v.size() == 1) {
+		return;
+	}
+
         // swap the first and last elements
         int lastIndex = v.size() - 1;
         swap(v[1], v[lastIndex]);
