@@ -1,5 +1,5 @@
-// O(N) linear time sorting algorith for a small integer range {0, k}
-// it takes O(k) space
+// O(n + k) linear time sorting algorithm for a small integer range {0, k}
+// it takes O(k) space, if we make it stable using link lists as in radix sort then it will take O(n + k) space
 
 #include <iostream>
 #include <vector>
