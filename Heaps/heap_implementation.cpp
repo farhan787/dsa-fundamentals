@@ -1,11 +1,7 @@
 #include <iostream>
 #include <vector>
 
-using std::cin;
-using std::cout;
-using std::endl;
-using std::swap;
-using std::vector;
+using namespace std;
 
 class Heap {
    private:
@@ -43,32 +39,37 @@ class Heap {
     Heap(int defaultSize = 50, bool isMinHeap = true) {
         v.reserve(defaultSize);
 
-        // block index 0
+        // block index 0, it'd help us to find the leftChild and rightChild of a node using Complete Binary Tree property
         v.push_back(-1);
 
         this->isMinHeap = isMinHeap;
     }
 
     void push(int data) {
-        // insert at last
+        // HOW TO PUSH NEW ELEMENT IN HEAP
+        // insert it to the end index and then move it to its correct position
         v.push_back(data);
 
-        // move it to correct position
-        int index = v.size() - 1;
-        int parent = index / 2;
+        // moving it to its correct position
+        int currIndex = v.size() - 1;
+        int parentIndex = currIndex / 2;
 
-        while (index > 1 && isViolating(v[parent], v[index])) {
-            swap(v[parent], v[index]);
+        while (currIndex > 1 && isViolating(v[parentIndex], v[currIndex])) {
+            swap(v[parentIndex], v[currIndex]);
 
-            index = parent;
-            parent = parent / 2;
+            currIndex = parentIndex;
+            parentIndex = parentIndex / 2;
         }
     }
 
     void pop() {
-	if (v.size() == 1) {
-		return;
-	}
+        // HOW TO POP TOP ELEMENT FROM HEAP
+        // swap the first and last elements and the remove last element
+        // after that maintain the heap order property for every node starting 1st node
+
+        if (v.size() == 1) {
+            return;
+        }
 
         // swap the first and last elements
         int lastIndex = v.size() - 1;
@@ -92,19 +93,19 @@ class Heap {
 
 int main() {
     // Heap implementation
-    Heap h;
-    h.push(1);
-    h.push(20);
-    h.push(2);
-    h.push(100);
-    h.push(40);
-    h.push(3);
+    const int heapSize = 50;
+    bool isMinHeap = true;
+
+    Heap h(heapSize, isMinHeap);
+    for (int i = 0; i < 10; i++) {
+        int num = rand() % 1000;
+        h.push(num);
+    }
 
     while (!h.empty()) {
-        cout << h.top() << " ";
+        cout << h.top() << ", ";
         h.pop();
     }
 
     cout << endl;
 }
-
