@@ -71,7 +71,8 @@ void sortArray(vector<int>& nums) {
     int rightEnd = (int)nums.size() - 1;
 
     // vector to copy elements at each recursive call
-    // also we won't create a new vector at each recursive call if we pass it from here
+    // we won't create a new vector at each recursive call if we pass it from here
+    // it'd increase efficiency
     vector<int> temp((int)nums.size(), 0);
 
     mergeSort(nums, temp, leftStart, rightEnd);
